@@ -34,7 +34,10 @@ const NewProduct: React.FC<Props> = ({ onChange }) => {
       } else if (price > 999999) {
         settoastMessage("El precio debe ser menor a 999999");
         setShowToast(true);
-      } else if (await createProduct(name, +price)) {
+      } else {
+        const resp = await createProduct(name, +price)
+        settoastMessage(resp);
+        setShowToast(true);
         setname("");
         setprice(0);
         onChange();
@@ -49,6 +52,7 @@ const NewProduct: React.FC<Props> = ({ onChange }) => {
         onDidDismiss={() => setShowToast(false)}
         message={toastMessage}
         duration={2000}
+        position="middle"
       />
       <IonRow>
         <IonItem>

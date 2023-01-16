@@ -4,7 +4,6 @@ import { Link, useHistory } from "react-router-dom";
 import Header from "../components/Header";
 import { registerUser } from "../firestore";
 import { IonToast } from "@ionic/react";
-import { toast } from "../toast";
 
 const Login: React.FC = () => {
   const [email, setemail] = useState("");
@@ -40,46 +39,49 @@ const Login: React.FC = () => {
     <IonPage>
       <Header />
       <IonContent fullscreen className="ion-padding">
-        <IonToast
-          isOpen={showToast}
-          onDidDismiss={() => setShowToast(false)}
-          message={toastMessage}
-          duration={2000}
-        />
-        <IonInput
-          type="email"
-          maxlength={30}
-          placeholder="Correo"
-          value={email}
-          onIonChange={(event: any) => {
-            setemail(event.currentTarget.value);
-          }}
-        />
-        <IonInput
-          type="password"
-          maxlength={30}
-          placeholder="Contraseña"
-          value={password}
-          onIonChange={(event: any) => {
-            setpassword(event.currentTarget.value);
-          }}
-        />
-        <IonInput
-          type="password"
-          maxlength={30}
-          placeholder="Confirmar Contraseña"
-          value={confirmation}
-          onIonChange={(event: any) => {
-            setconfirmation(event.currentTarget.value);
-          }}
-        />
-        <IonButton onClick={register}>Registrarse</IonButton>
-        <IonButton color="danger" routerLink="/home">
-          Volver
-        </IonButton>
-        <p>
-          Ya tengo una cuenta <Link to="/login">Login</Link>
-        </p>
+        <div className="ion-text-center">
+          <IonToast
+            isOpen={showToast}
+            onDidDismiss={() => setShowToast(false)}
+            message={toastMessage}
+            duration={2000}
+            position="middle"
+          />
+          <IonInput
+            type="email"
+            maxlength={30}
+            placeholder="Correo"
+            value={email}
+            onIonChange={(event: any) => {
+              setemail(event.currentTarget.value);
+            }}
+          />
+          <IonInput
+            type="password"
+            maxlength={30}
+            placeholder="Contraseña"
+            value={password}
+            onIonChange={(event: any) => {
+              setpassword(event.currentTarget.value);
+            }}
+          />
+          <IonInput
+            type="password"
+            maxlength={30}
+            placeholder="Confirmar Contraseña"
+            value={confirmation}
+            onIonChange={(event: any) => {
+              setconfirmation(event.currentTarget.value);
+            }}
+          />
+          <IonButton onClick={register}>Registrarse</IonButton>
+          <IonButton color="danger" routerLink="/home">
+            Volver
+          </IonButton>
+          <p>
+            Ya tengo una cuenta <Link to="/login">Login</Link>
+          </p>
+        </div>
       </IonContent>
     </IonPage>
   );

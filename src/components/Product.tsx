@@ -79,6 +79,7 @@ const Product: React.FC<Props> = (props) => {
         onDidDismiss={() => setShowToast(false)}
         message={toastMessage}
         duration={2000}
+        position="middle"
       />
       <IonRow>
         <IonItem>
