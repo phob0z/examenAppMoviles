@@ -33,6 +33,18 @@ import PrivateRoute from "./PrivateRoute";
 import { AuthProvider } from "./context/AuthProvider";
 import Dashboard from "./pages/Dashboard";
 
+import { SplashScreen } from "@capacitor/splash-screen";
+
+setupIonicReact();
+
+async function removeSplash() {
+  await SplashScreen.hide({
+    fadeOutDuration: 2,
+  });
+}
+
+removeSplash();
+
 setupIonicReact();
 
 const AppRouter: React.FC = () => (

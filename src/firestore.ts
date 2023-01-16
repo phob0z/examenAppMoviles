@@ -10,7 +10,6 @@ import {
   setDoc,
   deleteDoc,
 } from "firebase/firestore";
-import { toast } from "./toast";
 
 const firebaseConfig = {
   apiKey: "AIzaSyApaMEiBKnHIDD4YdYVESR1klc26jyqNlI",
@@ -29,11 +28,9 @@ export const storage = getStorage(app);
 export async function registerUser(email: string, password: string) {
   try {
     await createUserWithEmailAndPassword(auth, email, password);
-    toast("Creado correctamente, inicie sesión");
-    return true;
+    return "Creado correctamente, inicie sesión";
   } catch (error: any) {
-    toast(error.message, 4000);
-    return false;
+    return error.message;
   }
 }
 
@@ -41,22 +38,18 @@ export async function createProduct(name: string, price: number) {
   try {
     const collectionRef = collection(db, "products");
     await addDoc(collectionRef, { name, price });
-    toast("El producto fue agregado correctamente");
-    return true;
+    return "El producto fue agregado correctamente";
   } catch (error: any) {
-    toast(error.message, 4000);
-    return false;
+    return error.message;
   }
 }
 
 export async function deleteProduct(id: string) {
   try {
     await deleteDoc(doc(db, "products", id));
-    toast("El producto fue eliminado correctamente");
-    return true;
+    return "El producto fue eliminado correctamente";
   } catch (error: any) {
-    toast(error.message, 4000);
-    return false;
+    return error.message;
   }
 }
 
@@ -66,11 +59,9 @@ export async function updateProduct(id: string, name: string, price: number) {
       name: name,
       price: price,
     });
-    toast("El producto fue actualizado correctamente");
-    return true;
+    return "El producto fue actualizado correctamente";
   } catch (error: any) {
-    toast(error.message, 4000);
-    return false;
+    return error.message;
   }
 }
 
@@ -85,6 +76,6 @@ export async function getProducts() {
     });
     return products;
   } catch (error: any) {
-    toast(error.message, 4000);
+    console.log(error.message, 4000);
   }
 }
