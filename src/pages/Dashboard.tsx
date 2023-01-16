@@ -1,4 +1,11 @@
-import { IonContent, IonPage } from "@ionic/react";
+import {
+  IonContent,
+  IonInput,
+  IonItem,
+  IonLabel,
+  IonPage,
+  IonRow,
+} from "@ionic/react";
 import "./Dashboard.css";
 
 import Header from "../components/Header";
@@ -23,18 +30,34 @@ const Dashboard: React.FC = () => {
       <Header />
       <IonContent fullscreen className="ion-padding">
         <h1>Nuevo producto</h1>
-        <NewProduct onChange={() => {fetchData()}} />
+        <NewProduct
+          onChange={() => {
+            fetchData();
+          }}
+        />
         <h1>Lista de productos</h1>
-        {products.map((product: any) => {
-          return (
-            <Product onChange={() => {fetchData()}}
-              key={product.docId}
-              name={product.name}
-              price={product.price}
-              id={product.docId}
-            />
-          );
-        })}
+        {products.length === 0 ? (
+          <IonRow>
+            <IonItem>
+              <IonLabel>Aún no existen productos</IonLabel>
+              <IonInput disabled />
+            </IonItem>
+          </IonRow>
+        ) : (
+          products.map((product: any) => {
+            return (
+              <Product
+                onChange={() => {
+                  fetchData();
+                }}
+                key={product.docId}
+                name={product.name}
+                price={product.price}
+                id={product.docId}
+              />
+            );
+          })
+        )}
       </IonContent>
     </IonPage>
   );

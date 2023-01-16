@@ -4,20 +4,26 @@ import { createProduct } from "../firestore";
 import { toast } from "../toast";
 
 type Props = {
-  onChange: Function,
-}
+  onChange: Function;
+};
 
-const NewProduct: React.FC<Props> = ({onChange}) => {
+const NewProduct: React.FC<Props> = ({ onChange }) => {
   const [name, setname] = useState("");
   const [price, setprice] = useState(0);
   const onAddHandler = async () => {
     if (name.trim() === "") {
       return toast("Debe asignar un nombre");
     }
+    setprice((prevState)=>{ return +prevState})
     if (price <= 0) {
-      return toast("El precio debe ser mayor a cero");
+      return toast("El precio debe ser mayor a 0");
     }
-    if (await createProduct(name, price)) {
+    if (price > 999999) {
+      return toast("El precio debe ser menor a 999999");
+    }
+    if (await createProduct(name, +price)) {
+      setname("");
+      setprice(0);
       onChange();
     }
   };
@@ -27,6 +33,7 @@ const NewProduct: React.FC<Props> = ({onChange}) => {
       <IonItem>
         <IonLabel>Nombre</IonLabel>
         <IonInput
+          maxlength={20}
           placeholder="Nombre"
           type="text"
           value={name}
@@ -38,6 +45,9 @@ const NewProduct: React.FC<Props> = ({onChange}) => {
       <IonItem>
         <IonLabel>Precio</IonLabel>
         <IonInput
+          max={999999}
+          maxlength={6}
+          step="1"
           placeholder="Precio"
           type="number"
           value={price}

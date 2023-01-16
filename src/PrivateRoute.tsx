@@ -5,7 +5,7 @@ type Props = {
   children: JSX.Element,
 }
 
-const PrivateRoute = ({children }: Props) => {
+const PrivateRoute = ({children}: Props) => {
   const { logged } = useAuth();
   return logged ? children : <Redirect to="/home" />;
 };
