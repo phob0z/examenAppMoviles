@@ -6,7 +6,6 @@ import {
   IonPage,
   IonRow,
 } from "@ionic/react";
-import "./Dashboard.css";
 
 import Header from "../components/Header";
 import NewProduct from "../components/NewProduct";

@@ -9,7 +9,6 @@ import { Link, useHistory } from "react-router-dom";
 import Header from "../components/Header";
 import { registerUser } from "../firestore";
 import { toast } from "../toast";
-import "./Login.css";
 
 const Login: React.FC = () => {
   const [email, setemail] = useState("");

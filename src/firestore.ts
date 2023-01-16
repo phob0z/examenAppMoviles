@@ -1,8 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
-import {
-  getStorage,
-} from "firebase/storage";
+import { getStorage } from "firebase/storage";
 import {
   getFirestore,
   collection,
@@ -22,6 +20,11 @@ const firebaseConfig = {
   messagingSenderId: "22787390286",
   appId: "1:22787390286:web:8401a9fbf2b6f476eebc1f",
 };
+
+export const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
+export const db = getFirestore(app);
+export const storage = getStorage(app);
 
 export async function registerUser(email: string, password: string) {
   try {
@@ -85,8 +88,3 @@ export async function getProducts() {
     toast(error.message, 4000);
   }
 }
-
-export const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
-export const db = getFirestore(app);
-export const storage = getStorage(app);

@@ -4,7 +4,6 @@ import {
   IonPage,
 } from "@ionic/react";
 import Header from "../components/Header";
-import "./Home.css";
 
 const Home: React.FC = () => {
   return (
